@@ -29,10 +29,11 @@ Describe 'math-tool CLI' {
         $scriptPath = Join-Path $PSScriptRoot 'math-tool.ps1'
         $output = & pwsh -NoLogo -NoProfile -File $scriptPath -N $N
         $exitCode = $LASTEXITCODE
-        $lines = @($output | Where-Object { $_ -match '\S' })
+        $lines = @($output)
 
         $exitCode | Should -Be 0
         $lines | Should -HaveCount 1
+        $lines[0] | Should -Match '\S'
         $lines[0] | Should -Be $Expected
     }
 }
