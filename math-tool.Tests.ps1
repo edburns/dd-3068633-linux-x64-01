@@ -4,16 +4,16 @@ Describe 'Get-Fibonacci' {
     }
 
     $cases = @(
-        @{ N = 0; Expected = [long] 0 }
-        @{ N = 1; Expected = [long] 1 }
-        @{ N = 5; Expected = [long] 5 }
+        @{ N = 0; Expected = [bigint] 0 }
+        @{ N = 1; Expected = [bigint] 1 }
+        @{ N = 5; Expected = [bigint] 5 }
     )
 
     It 'returns only the numeric Fibonacci value for N=<N>' -ForEach $cases {
         $result = @(Get-Fibonacci -N $N)
 
         $result | Should -HaveCount 1
-        $result[0] | Should -BeOfType [long]
+        $result[0] | Should -BeOfType ([bigint])
         $result[0] | Should -Be $Expected
     }
 }
